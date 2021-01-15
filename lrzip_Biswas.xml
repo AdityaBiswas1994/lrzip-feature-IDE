@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+    <properties/>
+    <struct>
+        <and abstract="true" mandatory="true" name="lrzip">
+            <feature mandatory="true" name="Description"/>
+            <or name="Options">
+                <or name="General Options">
+                    <alt name="c">
+                        <feature name="crc32"/>
+                        <feature name="md5"/>
+                    </alt>
+                    <feature name="d"/>
+                    <or name="e">
+                        <feature name="sha512 hashed"/>
+                        <feature name="random salt"/>
+                        <feature name="aes128"/>
+                    </or>
+                    <and name="h | ?">
+                        <feature name="Options Summary"/>
+                    </and>
+                    <feature name="H"/>
+                    <feature name="i"/>
+                    <feature name="q"/>
+                    <feature name="t"/>
+                    <and name="v [ v ]">
+                        <feature name="Increases Verbosity"/>
+                    </and>
+                    <and name="V">
+                        <feature name="lrzip version number"/>
+                    </and>
+                </or>
+                <or name="Options affecting Output">
+                    <feature name="D"/>
+                    <feature name="f"/>
+                    <feature name="k"/>
+                    <feature name="o"/>
+                    <feature name="O"/>
+                    <feature name="S"/>
+                </or>
+                <or name="Options affecting Compression">
+                    <feature name="b"/>
+                    <feature name="g"/>
+                    <feature name="l"/>
+                    <feature name="n"/>
+                    <feature name="z"/>
+                </or>
+                <or name="Low level Options">
+                    <feature name="L"/>
+                    <feature name="N"/>
+                    <feature name="p"/>
+                    <feature name="T"/>
+                    <feature name="U"/>
+                    <feature name="w"/>
+                </or>
+            </or>
+            <alt mandatory="true" name="Installation">
+                <feature name="make install"/>
+                <feature name="install lrzip"/>
+            </alt>
+            <feature mandatory="true" name="Compression Algorithm"/>
+            <feature mandatory="true" name="Files"/>
+            <feature mandatory="true" name="Environment"/>
+        </and>
+    </struct>
+    <constraints>
+        <rule>
+            <imp>
+                <var>H</var>
+                <conj>
+                    <var>d</var>
+                    <var>md5</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>t</var>
+                <conj>
+                    <disj>
+                        <var>c</var>
+                        <var>d</var>
+                    </disj>
+                    <var>D</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>k</var>
+                <not>
+                    <var>D</var>
+                </not>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>O</var>
+                <not>
+                    <var>o</var>
+                </not>
+            </imp>
+        </rule>
+    </constraints>
+    <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+    <comments/>
+    <featureOrder userDefined="false"/>
+</featureModel>
